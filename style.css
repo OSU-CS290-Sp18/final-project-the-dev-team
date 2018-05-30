@@ -1,0 +1,56 @@
+a {
+     text-decoration: none;
+     color: rgba(0, 0, 0, 1);
+}
+
+
+a:hover {
+     color:rgba(277,250, 32, 1);
+}
+
+
+body {
+     background-color: rgba(230, 230, 230, 1);
+     margin:0;
+}
+
+.title{
+     text-align: center;
+     font-size: 40px;
+     font-family: 'Russo One', sans-serif;
+     margin: 0;
+     padding: 10px;
+     background-color: rgba(180,181, 174, 1);
+     color: rgba(277,250, 32, 1);
+}
+
+.navitem {
+     display: inline;
+     padding: 7.5px;
+     color: rgba(0, 0, 0, 1);
+     font-family: 'Russo One', sans-serif;
+
+}
+
+.navright {
+     //float: right;
+}
+
+.navlist {
+     padding: 0px;
+     margin: 0px;
+}
+
+.navbar {
+
+     background-color: rgb(209, 211, 214);
+     margin: 0px;
+     padding-left: 15px;
+     padding-top: 10px;
+     padding-bottom: 15px;
+}
+
+.active {
+
+     border-bottom: 3px solid rgba(53,148,210,1);
+}
