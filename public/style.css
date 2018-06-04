@@ -94,11 +94,32 @@ body {
 }
 
 .dropdown{
-  float:right;
-  margin-top:20px;
-  margin-right:60px;
+  display: inline-block;
+  margin-top:30px;
+  margin-left:60px;
+  margin-right:8px;
 }
 
 .dropdown-menu{
   padding-left: 10px;
+}
+
+#dropdownMenu1{
+  background-image:linear-gradient(to right,#A8E6F6,#9FE3F5);
+}
+
+#dropdownMenu2{
+  background-color:#5BE8A7;
+}
+
+.select-title{
+  margin:60px;
+  margin-left:35%;
+  font-size:30px;
+  font-weight:bold;
+}
+
+.content-container{
+  height:100%;
+  min-width: 80%;
 }
