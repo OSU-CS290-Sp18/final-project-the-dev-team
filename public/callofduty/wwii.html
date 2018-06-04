@@ -35,13 +35,15 @@
       <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" class="form-control" id="username" name="name" placeholder="Input your username in the game">
-        <label for="platform">Platform:</label>
-        <input type="radio" name="option-platform" id="platform-psn" value="psn" checked>
-        <label>PlayStation</label>
-        <input type="radio" name="option-platform" id="platform-xbl" value="xbl">
-        <label>XBOX</label>
-        <input type="radio" name="option-platform" id="platform-steam" value="steam">
-        <label>Steam</label>
+        <div class="platform-group">
+          <label for="platform">Platform:</label>
+          <input type="radio" name="option-platform" id="platform-psn" value="psn" checked>
+          <label>PlayStation</label>
+          <input type="radio" name="option-platform" id="platform-xbl" value="xbl">
+          <label>XBOX</label>
+          <input type="radio" name="option-platform" id="platform-steam" value="steam">
+          <label>Steam</label>
+        </div>
       </div>
       <button type="submit" class="btn btn-default" id="submit-button">Submit</button>
     </form>

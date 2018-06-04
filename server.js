@@ -99,14 +99,41 @@ app.get('/',function(req,res){
   });
 });
 
-app.post('/callofduty/wwii/submit',function(req,res){
+app.get('/123',function(req,res){
+  res.redirect('/result');
+});
+
+app.post('/callofduty/wwii/submit',function(req,res,next){
+  req.method = 'get';
+  res.redirect(301,'http://localhost:3000/');
+  console.log(123);
+  var resultObj;
   console.log(req.body);
   console.log("   - username:",req.body.username);
   console.log("   - platform:",req.body.platform);
   codAPI.getProfile(req.body,function(profile){
-    console.log(profile['mp']['lifetime']['all']);
+    console.log(profile['mp']);
+    resultObj={
+      username:req.body.username,
+      platform:req.body.platform,
+      level:profile['mp']['level'],
+      prestige:profile['mp']['prestige']
+    };
+    console.log(resultObj);
+
   });
 });
 
+var testObj = {
+  mp:{
+    level:10,
+    prestige:40
+  }
+};
+
+app.get('/result',function(req,res){
+  res.render('resultPage',testObj);
+});
 
 app.use(express.static('public'));
+app.use(express.static('public/callofduty'));
