@@ -10,6 +10,21 @@ var express = require('express');
 
 var app = express();
 
+app.engine('handlebars',exphbs({
+  defaultLayout:'main',
+  helpers:{
+    'ifThird':function(index, options){
+      if((index)%3==0){
+        return options.fn(this);
+      }
+      else{
+        return options.inverse(this);
+      }
+    }
+  }
+  }));
+app.set('view engine','handlebars');
+
 var port = process.env.PORT || 3000;
 
 const platform = 'pc';
@@ -75,12 +90,21 @@ app.listen(port, function () {
   console.log("== Server is listening on port", port);
 });
 
+app.get('/',function(req,res){
+  res.status(200);
+  var cardJson = fs.readFileSync('gameData.json');
+  var cardJsonContent = JSON.parse(cardJson);
+  res.render('indexPage',{
+    cards:cardJsonContent
+  });
+});
+
 app.post('/callofduty/wwii/submit',function(req,res){
   console.log(req.body);
   console.log("   - username:",req.body.username);
   console.log("   - platform:",req.body.platform);
   codAPI.getProfile(req.body,function(profile){
-    console.log(profile);
+    console.log(profile['mp']['lifetime']['all']);
   });
 });
 

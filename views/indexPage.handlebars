@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    {{#each cards}}
+    {{#ifThird @index}}
+  </div>
+  <div class="row">
+    {{/ifThird}}
+      {{> cardTemplate}}
+    {{/each}}
+  </div>
+</div>
