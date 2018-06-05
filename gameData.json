@@ -5,7 +5,8 @@
   },
   {
     "imgURL":"https://www.callofduty.com/content/dam/atvi/callofduty/wwii/home/Stronghold_Metadata_Image.jpg",
-    "cardTitle":"Call of Duty"
+    "cardTitle":"Call of Duty",
+    "destURL":"/callofduty"
   },
   {
     "imgURL":"https://cdn.images.express.co.uk/img/dynamic/143/590x/PUBG-886916.jpg",

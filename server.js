@@ -103,9 +103,12 @@ app.get('/123',function(req,res){
   res.redirect('/result');
 });
 
+app.post('/submit',function(res,req){
+  res.redirect('/result');
+});
+
 app.post('/callofduty/wwii/submit',function(req,res,next){
-  req.method = 'get';
-  res.redirect(301,'http://localhost:3000/');
+
   console.log(123);
   var resultObj;
   console.log(req.body);
@@ -122,6 +125,7 @@ app.post('/callofduty/wwii/submit',function(req,res,next){
     console.log(resultObj);
 
   });
+  res.redirect('/');
 });
 
 var testObj = {
@@ -130,6 +134,12 @@ var testObj = {
     prestige:40
   }
 };
+
+app.post('/a', [function(req, res, next) {
+  next();
+}, function(req, res) {
+  res.send('Hello World!');
+}]);
 
 app.get('/result',function(req,res){
   res.render('resultPage',testObj);

@@ -1,5 +1,25 @@
 $('.dropdown-toggle').dropdown();
 
+function postTest(){
+  var request = new XMLHttpRequest();
+  var requestURL = window.location.pathname + '/submit';
+  request.open('POST',requestURL);
+  var userObj = {
+    username:1,
+    platform:2,
+    title:'wwii',
+    days:1,
+    type:'core',
+    time:'monthly',
+    mode:'career'
+  };
+  var requestBody = JSON.stringify(userObj);
+  request.setRequestHeader(
+    'Content-Type','application/json'
+  );
+  request.send(requestBody);
+}
+
 function uploadForm(){
   var username = submitForm['name'].value;
   var platform;
@@ -14,7 +34,7 @@ function uploadForm(){
   }
 
   var request = new XMLHttpRequest();
-  var requestURL = '/callofduty/wwii/submit';
+  var requestURL = window.location.pathname + '/submit';
   request.open('POST',requestURL);
   var userObj = {
     username:username,
@@ -25,7 +45,6 @@ function uploadForm(){
     time:'monthly',
     mode:'career'
   };
-  console.log("this is",userObj);
   var requestBody = JSON.stringify(userObj);
   request.setRequestHeader(
     'Content-Type','application/json'
@@ -35,7 +54,7 @@ function uploadForm(){
       alert("form submit failure");
     }
     else{
-
+      request.open('GET','http://google.com');
     }
   });
 
@@ -44,5 +63,7 @@ function uploadForm(){
 
 var submitButton = document.getElementById('submit-button');
 var submitForm = document.forms[0];
-console.log(submitForm);
 submitButton.addEventListener('click',uploadForm);
+
+var testButton = document.getElementById('test-button');
+testButton.addEventListener('click',postTest);
