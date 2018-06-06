@@ -46,10 +46,6 @@ body {
   background-color: lightgrey;
 }
 
-.navright {
-     //float: right;
-}
-
 .navlist {
      padding: 0px;
      margin: 0px;
@@ -60,9 +56,6 @@ body {
      background-color: #E9ECEF;
      margin: 0px;
      padding:0px;
-     //padding-left: 15px;
-     //padding-top: 10px;
-     //padding-bottom: 8px;
 }
 
 .active {
