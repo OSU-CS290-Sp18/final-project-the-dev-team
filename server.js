@@ -25,7 +25,7 @@ app.engine('handlebars',exphbs({
   }));
 app.set('view engine','handlebars');
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
 
 const platform = 'pc';
 const region = 'us';
