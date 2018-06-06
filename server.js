@@ -34,11 +34,11 @@ const tag = 'JayBreak-1527';
 const steamAPIKey = '36E4FE8D8ABDAB3E874F2111676BFFAF';
 
 var appID = 311210;
-/*
+
 overwatch.getProfile(platform,region,tag,function(json){
   console.log(json);
 });
-*/
+
 
 var user = new steamAPI.User(steamAPIKey,76561198272110510);
 var userStats = new steamAPI.UserStats(steamAPIKey);
