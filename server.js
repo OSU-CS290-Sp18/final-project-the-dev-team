@@ -147,3 +147,4 @@ app.get('/result',function(req,res){
 
 app.use(express.static('public'));
 app.use(express.static('public/callofduty'));
+app.use(express.static('public/Overwatch'));

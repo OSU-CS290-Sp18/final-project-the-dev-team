@@ -1,7 +1,8 @@
 [
   {
     "imgURL":"https://cdna.artstation.com/p/assets/images/images/005/296/592/large/nokado-katoji-overwatch-logo-blank.jpg?1490020924",
-    "cardTitle":"Overwatch"
+    "cardTitle": "Overwatch",
+    "destURL": "/Overwatch"
   },
   {
     "imgURL":"https://www.callofduty.com/content/dam/atvi/callofduty/wwii/home/Stronghold_Metadata_Image.jpg",
