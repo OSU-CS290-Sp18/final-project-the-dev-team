@@ -68,6 +68,8 @@ body {
        padding: 20px;
        margin: 20px;
        float: right;
+       display:flex;
+       flex-wrap:wrap;
 }
 
 .profileContainer {
