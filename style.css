@@ -28,16 +28,17 @@ body {
      color: rgba(277,250, 32, 1);
 }
 
+.title:hover{
+     color: rgba(287, 255, 37, 1);
+     font-weight: bold;
+}
+
 .navitem {
      display: inline;
      padding: 7.5px;
      color: rgba(0, 0, 0, 1);
      font-family: 'Russo One', sans-serif;
 
-}
-
-.navright {
-     //float: right;
 }
 
 .navlist {
@@ -61,7 +62,6 @@ body {
 
 .card {
        width: 20rem;
-       //height: 20rem;
 }
 
 .container {
@@ -75,8 +75,6 @@ body {
        padding: 20px;
        border: 3px solid rgba(0,0,0,1);
        border-radius: 10px;
-       //display: inline;
-
 }
 
 .profileElementList {
