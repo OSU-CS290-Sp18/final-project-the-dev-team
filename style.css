@@ -10,6 +10,7 @@ a:hover {
 }
 
 body {
+     font-family: 'Russo One', sans-serif;
      background-color: rgba(230, 230, 230, 1);
      margin:0;
 }
@@ -80,8 +81,16 @@ body {
        font-size: 40px;
 }
 
+.username:hover{
+     font-weight:bold;    
+}
+
 .blizID {
        font-size: 15px;
+}
+
+.blizID:hover{
+      font-weight:bold;    
 }
 
 .sr {
