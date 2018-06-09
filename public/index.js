@@ -3,6 +3,7 @@ $('.dropdown-toggle').dropdown();
 function postTest(){
   var request = new XMLHttpRequest();
   var requestURL = window.location.pathname + '/submit';
+  console.log(requestURL);
   request.open('POST',requestURL);
   var userObj = {
     username:1,
@@ -61,9 +62,33 @@ function uploadForm(){
   request.send(requestBody);
 }
 
+function utilityUpload(){
+
+  var username = utilityForm['name'].value;
+
+  var request = new XMLHttpRequest();
+  var requestURL = window.location.pathname + 'submit';
+  console.log(requestURL);
+  request.open('POST',requestURL);
+  var userObj = {
+    username:username
+  };
+  var requestBody = JSON.stringify(userObj);
+  request.setRequestHeader(
+    'Content-Type','application/json'
+  );
+  request.send(requestBody);
+  console.log(123);
+}
+
+/*
 var submitButton = document.getElementById('submit-button');
 var submitForm = document.forms[0];
 submitButton.addEventListener('click',uploadForm);
 
 var testButton = document.getElementById('test-button');
 testButton.addEventListener('click',postTest);
+*/
+var utilityButton = document.getElementById('utility-submit-button');
+var utilityForm = document.forms[0];
+utilityButton.addEventListener('click',utilityUpload);

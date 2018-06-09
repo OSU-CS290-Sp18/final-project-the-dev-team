@@ -7,6 +7,29 @@ var path = require('path');
 var fs = require('fs');
 var exphbs = require('express-handlebars');
 var express = require('express');
+var MongoClient = require('mongodb').MongoClient;
+
+var mongoHost = process.env.MONGO_HOST;
+var mongoPort = process.env.MONGO_PORT || 27017;
+var mongoUser = process.env.MONGO_USER;
+var mongoPassword = process.env.MONGO_PASSWORD;
+var mongoDBName = process.env.MONGO_DB;
+
+mongoHost = 'classmongo.engr.oregonstate.edu';
+mongoPort = 27017;
+mongoUser = 'cs290_guz';
+mongoPassword = 'cs290_guz';
+mongoDBName = 'cs290_guz';
+
+
+
+var mongoDBDatabase;
+var db;
+var overwatchId = 51;
+
+
+var mongoURL = 'mongodb://' + mongoUser + ':' + mongoPassword + '@' + mongoHost + ':' + mongoPort + '/' + mongoDBName;
+console.log(mongoURL);
 
 var app = express();
 
@@ -29,14 +52,18 @@ var port = process.env.PORT || 3001;
 
 const platform = 'pc';
 const region = 'us';
-const tag = 'JayBreak-1527';
+const tag = 'J3sus-11941';
 
 const steamAPIKey = '36E4FE8D8ABDAB3E874F2111676BFFAF';
 
 var appID = 311210;
+
 /*
 overwatch.getProfile(platform,region,tag,function(json){
   console.log(json);
+  json._id = 5;
+  var player = db.collection('player.overwatch');
+  player.insertOne(json);
 });
 */
 
@@ -70,9 +97,9 @@ app.get('/123',function(req,res){
 */
 
 var options = {
-  title:"iw",
-  platform:"steam",
-  username:"Noob Smg",
+  title:"bo3",
+  platform:"psn",
+  username:"Prospect",
   days:1,
   type:"core",
   time:"monthly",
@@ -86,9 +113,11 @@ codAPI.getProfile(options,function(profile){
 });
 
 
+/*
 app.listen(port, function () {
   console.log("== Server is listening on port", port);
 });
+*/
 
 app.get('/',function(req,res){
   res.status(200);
@@ -99,6 +128,8 @@ app.get('/',function(req,res){
   });
 });
 
+
+
 app.get('/123',function(req,res){
   res.redirect('/result');
 });
@@ -106,6 +137,15 @@ app.get('/123',function(req,res){
 app.post('/submit',function(res,req){
   res.redirect('/result');
 });
+
+
+
+app.post('/Overwatch/', function(req,res,){
+       console.log("=== Overwatch Request Recived");
+
+});
+
+
 
 app.post('/callofduty/wwii/submit',function(req,res,next){
 
@@ -135,6 +175,13 @@ var testObj = {
   }
 };
 
+app.post('/utility/submit',function(req,res,next){
+  var username = req.body.username.replace('#','-');
+  console.log(username);
+  addPlayerOverwatch(username);
+  console.log(123);
+});
+
 app.post('/a', [function(req, res, next) {
   next();
 }, function(req, res) {
@@ -145,5 +192,44 @@ app.get('/result',function(req,res){
   res.render('resultPage',testObj);
 });
 
+app.get('/player',function(req,res){
+  var player = db.collection('player');
+  var playerCursor = player.find({});
+  playerCursor.toArray(function(err,playerDocs){
+    if(err){
+      res.status(500).send("error in DB");
+    }
+    else{
+      console.log(playerDocs);
+    }
+  });
+});
+
 app.use(express.static('public'));
 app.use(express.static('public/callofduty'));
+app.use(express.static('public/Overwatch'));
+app.use(express.static('public/utility'));
+
+
+MongoClient.connect(mongoURL,function(err,client){
+  if(err){
+    throw err;
+  }
+  db = mongoDBDatabase = client.db(mongoDBName);
+  app.listen(3001,function(){
+      console.log("== Server is listening on port 3001.");
+  });
+});
+
+function addPlayerOverwatch(name){
+  overwatch.getProfile(platform,region,name,function(json){
+    console.log(json);
+    json._id = overwatchId;
+    if(json.competitive.star==''){
+      json.competitive.star = 'none';
+    }
+    var player = db.collection('player.overwatch');
+    player.insertOne(json);
+    overwatchId++;
+  });
+}
