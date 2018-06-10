@@ -117,3 +117,122 @@ body {
 .data-table{
   background-color: white;
 }
+
+
+
+
+.profileContainer {
+
+       display: flex;
+       margin: 20px 10%;
+       //align-items: center;
+       justify-content: center;
+
+
+}
+
+.playerBox {
+       flex: 28%;
+       display: flex;
+       flex-wrap: nowrap;
+       min-width: 620px;
+       max-width: 800px;
+       border: 2px solid rgb(0,0,0);
+       border-radius: 10px;
+       background-color: rgb(255,255,255);
+       padding: 10px;
+       align-items: center;
+
+}
+
+.playerPicBox {
+       //float: left;
+       display: inline-flex;
+       border: 2px solid rgb(0,0,0);
+       border-radius: 10px;
+       //padding: 25px;
+}
+.profileUser {
+
+       display: inline-block;
+
+}
+
+
+
+.rankBox {
+       //float: right;
+       border-left: 2px solid lightgrey;
+       margin-left: 20px;
+       align-items: center;
+
+}
+.username {
+       font-size: 40px;
+       margin: 20px;
+       margin-right: 5px;
+       padding-top: 10px;
+       display: inline;
+}
+.blizID {
+       display: inline;
+       font-size: 15px;
+}
+
+.skillRating {
+       display: inline;
+       font-size: 35px;
+       margin: 20px;
+       margin-right: 5px;
+
+
+}
+
+.sr {
+       display: inline;
+       font-size: 20px;
+}
+
+.statBox {
+
+       margin-left: 20px;
+       float:left;
+       flex: 28%;
+       display: inline;
+       flex-wrap: wrap;
+       border: 2px solid rgb(0,0,0);
+       border-radius: 10px;
+       background-color: rgb(255,255,255);
+       padding: 10px;
+       align-items: center;
+
+
+}
+
+.sectionTitle {
+       font-size: 40px;
+       font-weight: bold;
+       justify-content: center;
+}
+
+.stats {
+       display: block;
+       list-style: none;
+       margin: 0;
+       padding: 0;
+       padding-left: 20px;
+}
+
+.category {
+       display: inline;
+}
+
+.data {
+       display: inline;
+       font-weight: bold;
+
+}
+.statContainer {
+       margin-left: 20%;
+       margin-right: 20%;
+}
