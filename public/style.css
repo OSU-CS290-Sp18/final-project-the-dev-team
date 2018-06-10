@@ -119,11 +119,15 @@ body {
 }
 
 
+.infoContainer {
+       display: flex;
+       margin: 10px;
 
+}
 
 .profileContainer {
 
-       display: flex;
+       //display: flex;
        margin: 20px 10%;
        //align-items: center;
        justify-content: center;
