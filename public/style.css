@@ -121,22 +121,31 @@ body {
 
 .infoContainer {
        display: flex;
+       flex-wrap: wrap;
        margin: 10px;
+       margin-left: 20%;
+       margin-right: 20%;
+       justify-content: center;
+       min-width: 620px;
+       max-width: 1000px;
 
 }
 
 .profileContainer {
 
-       //display: flex;
+       display: flex;
        margin: 20px 10%;
+       flex:100%;
+       min-width: 620px;
+       max-width: 800px;
        //align-items: center;
-       justify-content: center;
+      // justify-content: center;
 
 
 }
 
 .playerBox {
-       flex: 28%;
+       flex: 30%;
        display: flex;
        flex-wrap: nowrap;
        min-width: 620px;
@@ -163,14 +172,15 @@ body {
 }
 
 
-
 .rankBox {
-       //float: right;
+       float: left;
        border-left: 2px solid lightgrey;
        margin-left: 20px;
        align-items: center;
+     //  position: relative;
 
 }
+
 .username {
        font-size: 40px;
        margin: 20px;
@@ -200,9 +210,9 @@ body {
 .statBox {
 
        margin-left: 20px;
-       float:left;
+      // float:left;
        flex: 28%;
-       display: inline;
+       //display: inline;
        flex-wrap: wrap;
        border: 2px solid rgb(0,0,0);
        border-radius: 10px;
@@ -217,6 +227,7 @@ body {
        font-size: 40px;
        font-weight: bold;
        justify-content: center;
+       margin: 0px;
 }
 
 .stats {
@@ -237,6 +248,95 @@ body {
 
 }
 .statContainer {
-       margin-left: 20%;
-       margin-right: 20%;
+     display: flex;
+     margin-bottom: 20px;
+     //float: left;
+//     flex: 25%;
+//       margin-left: 20%;
+//       margin-right: 20%;
+}
+
+.suggestedPlayers {
+
+
+     margin-left: 20px;
+     flex: 46%;
+     flex-wrap: nowrap;
+     border: 2px solid rgb(0,0,0);
+     border-radius: 10px;
+     background-color: rgb(255,255,255);
+     padding: 10px;
+     align-items: center;
+     justify-content: center;
+     margin-bottom: 20px
+
+}
+
+.miniPlayer {
+     flex: 100%;
+     display: flex;
+     flex-wrap: nowrap;
+     margin: 10px;
+     margin-left: 10%;
+     margin-right: 10%;
+     border: 2px solid rgb(0,0,0);
+     border-radius: 10px;
+     background-color: rgb(255,255,255);
+     padding: 10px;
+     align-items: center;
+}
+
+.miniProfileUser {
+          align-items: center;
+
+}
+
+.miniRankBox {
+       float: left;
+       border-left: 2px solid lightgrey;
+       margin-left: 10px;
+       align-items: center;
+       display: inline;
+       flex-wrap: nowrap;
+      align-items: center;
+     //  position: relative;
+
+}
+
+
+
+.miniUsername {
+       font-size: 20px;
+       margin: 20px;
+       margin-right: 5px;
+       padding-top: 10px;
+       display: inline;
+}
+.miniBlizID {
+       display: inline;
+       font-size: 15px;
+       align-items: center;
+       flex-wrap: nowrap;
+}
+
+.miniSkillRating {
+       display: inline;
+       font-size: 15px;
+       margin: 20px;
+       margin-right: 5px;
+      align-items: center;
+      flex-wrap: nowrap;
+
+}
+
+.miniSr {
+       display: inline;
+       font-size: 10px;
+       align-items: center;
+       flex-wrap: nowrap;
+}
+.playerContainer {
+     display: flex;
+     flex-wrap: wrap;
+     //flex: 100%;
 }
