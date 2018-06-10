@@ -21,7 +21,11 @@ mongoUser = 'cs290_guz';
 mongoPassword = 'cs290_guz';
 mongoDBName = 'cs290_guz';
 
+<<<<<<< HEAD
 var testvar;
+=======
+var test22222;
+>>>>>>> a2e31d05fcd99453014d1708b468ec2ad52a00ee
 
 var mongoDBDatabase;
 var db;
