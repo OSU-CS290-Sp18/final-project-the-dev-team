@@ -21,11 +21,9 @@ mongoUser = 'cs290_guz';
 mongoPassword = 'cs290_guz';
 mongoDBName = 'cs290_guz';
 
-<<<<<<< HEAD
+
 var testvar;
-=======
-var test22222;
->>>>>>> a2e31d05fcd99453014d1708b468ec2ad52a00ee
+
 
 var mongoDBDatabase;
 var db;
@@ -180,9 +178,10 @@ var testObj = {
 };
 
 app.post('/utility/submit',function(req,res,next){
-  var username = req.body.username.replace('#','-');
+  //var username = req.body.username.replace('#','-');
+  var username = req.body.username;
   console.log(username);
-  addPlayerOverwatch(username);
+  addPlayerCOD(username);
   console.log(123);
 });
 
@@ -235,5 +234,27 @@ function addPlayerOverwatch(name){
     var player = db.collection('player.overwatch');
     player.insertOne(json);
     overwatchId++;
+  });
+}
+
+var codId = 40;
+
+function addPlayerCOD(name){
+  var options = {
+    title:"bo3",
+    platform:"psn",
+    username:name,
+    days:1,
+    type:"core",
+    time:"monthly",
+    mode:"career"
+  };
+  console.log(options);
+  codAPI.getProfile(options,function(profile){
+    console.log(profile);
+    profile._id = codId;
+    var player = db.collection('player.callofduty');
+    player.insertOne(profile);
+    codId++;
   });
 }
