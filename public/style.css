@@ -219,7 +219,7 @@ body {
        background-color: rgb(255,255,255);
        padding: 10px;
        align-items: center;
-       
+
 
 
 }
@@ -347,3 +347,34 @@ body {
   width:25px;
   display: inline;
 }
+
+.mostPlayedBox {
+     flex: 100%;
+     display: wrap;
+     //flex-wrap: nowrap;
+     margin: 10px;
+     margin-left: 10%;
+     margin-right: 10%;
+     border: 2px solid rgb(0,0,0);
+     border-radius: 10px;
+     background-color: rgb(255,255,255);
+     padding: 10px;
+     //align-items: center;
+}
+
+/* Container for skill bars */
+.barContainer {
+    width: 100%; /* Full width */
+    background-color: #ddd; /* Grey background */
+}
+
+.skills {
+    text-align: right; /* Right-align text */
+    padding-right: 20px; /* Add some right padding */
+    line-height: 40px; /* Set the line-height to center the text inside the skill bar, and to expand the height of the container */
+    color: white; /* White text color */
+}
+
+.html {width: 90%; background-color: #4CAF50;} /* Green */
+.css {width: 80%; background-color: #2196F3;} /* Blue */
+.js {width: 65%; background-color: #f44336;} /* Red */
