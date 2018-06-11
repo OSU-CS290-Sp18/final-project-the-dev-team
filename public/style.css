@@ -341,3 +341,9 @@ body {
      flex-wrap: wrap;
      //flex: 100%;
 }
+
+.result-pic{
+  height:25px;
+  width:25px;
+  display: inline;
+}
