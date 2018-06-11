@@ -114,7 +114,10 @@ codAPI.getProfile(options,function(profile){
   console.log(profile);
 });
 
-
+app.use(express.static('public'));
+app.use(express.static('public/callofduty'));
+app.use(express.static('public/Overwatch'));
+app.use(express.static('public/utility'));
 /*
 app.listen(port, function () {
   console.log("== Server is listening on port", port);
@@ -178,25 +181,47 @@ var testObj = {
   }
 };
 
+/*
 app.get('/utility/submit',function(req,res,next){
   res.redirect('/');
   console.log(234);
 });
-
+*/
 app.get('/utility/result/:username',function(req,res,next){
-  var username = req.params.username;
+  var username = req.params.username.split('-')[0];
+  var blizID = req.params.username.split('-')[1];
   var player = db.collection('player.overwatch');
   var playerCursor = player.find({username:username});
-  console.log("== The user information is fetched from DB:");
-  console.log(playerCursor);
+  playerCursor.toArray(function(err,playerDocs){
+    if(err){
+      res.status(500).send("Error in database");
+    }
+    else{
+
+      console.log("== The user information is fetched from DB:");
+      console.log(playerDocs);
+      var playerElement = playerDocs[0];
+      res.status(200);
+      res.render('overwatchPage',{
+        profilePic:playerElement.portrait,
+        username:username,
+        blizID:blizID,
+        skillRating:playerElement.competitive.rank,
+        rankPic:playerElement.competitive.rank_img
+      });
+    }
+  });
+
 });
 
+/*
 app.post('/utility/submit',function(req,res,next){
   //var username = req.body.username.replace('#','-');
   var username = req.body.username;
   console.log(username);
   //addPlayerCOD(username);
 });
+*/
 
 app.post('/a', [function(req, res, next) {
   next();
@@ -221,10 +246,7 @@ app.get('/player',function(req,res){
   });
 });
 
-app.use(express.static('public'));
-app.use(express.static('public/callofduty'));
-app.use(express.static('public/Overwatch'));
-app.use(express.static('public/utility'));
+
 
 
 MongoClient.connect(mongoURL,function(err,client){
