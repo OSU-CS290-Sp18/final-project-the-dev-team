@@ -166,8 +166,9 @@ app.post('/callofduty/wwii/submit',function(req,res,next){
     };
     console.log(resultObj);
 
+
   });
-  res.redirect('/');
+  res.send("123");
 });
 
 var testObj = {
@@ -177,12 +178,24 @@ var testObj = {
   }
 };
 
+app.get('/utility/submit',function(req,res,next){
+  res.redirect('/');
+  console.log(234);
+});
+
+app.get('/utility/result/:username',function(req,res,next){
+  var username = req.params.username;
+  var player = db.collection('player.overwatch');
+  var playerCursor = player.find({username:username});
+  console.log("== The user information is fetched from DB:");
+  console.log(playerCursor);
+});
+
 app.post('/utility/submit',function(req,res,next){
   //var username = req.body.username.replace('#','-');
   var username = req.body.username;
   console.log(username);
-  addPlayerCOD(username);
-  console.log(123);
+  //addPlayerCOD(username);
 });
 
 app.post('/a', [function(req, res, next) {

@@ -69,6 +69,7 @@ function utilityUpload(){
   var request = new XMLHttpRequest();
   var requestURL = window.location.pathname + 'submit';
   console.log(requestURL);
+
   request.open('POST',requestURL);
   var userObj = {
     username:username
@@ -77,8 +78,12 @@ function utilityUpload(){
   request.setRequestHeader(
     'Content-Type','application/json'
   );
+
   request.send(requestBody);
-  console.log(123);
+
+  var url = window.location.href;
+  window.location.href = url + "result/" + username;
+
 }
 
 /*
