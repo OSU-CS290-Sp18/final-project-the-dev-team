@@ -180,10 +180,12 @@ app.get('/utility/result/:username',function(req,res,next){
             goldMedal = playerElement.competitive.global.medals_gold,
             silverMedal = playerElement.competitive.global.medals_silver,
             bronzeMedal = playerElement.competitive.global.medals_bronze,
+            winPercentage = Math.floor((winCount/playedCount)*100*100)/100 + "%",
             sugObjArray = [];
+            console.log(winPercentage);
             var sugCursor = player.find({$and:[{"profile.rank":{$gte:skillRating-200}},{"profile.rank":{$lte:skillRating+200}}]});
             sugCursor.toArray(function(err,sugDocs){
-              console.log(sugDocs);
+              //console.log(sugDocs);
               for(var i = 0;i < 5;i++){
                 var sugObj = sugDocs[i];
                 sugObj['blizID'] = sugObj.profile.url.split("-")[2];
@@ -205,6 +207,7 @@ app.get('/utility/result/:username',function(req,res,next){
                 goldMedal:goldMedal,
                 silverMedal:silverMedal,
                 bronzeMedal:bronzeMedal,
+                winPercentage:winPercentage,
                 suggested:sugObjArray
               });
             });
