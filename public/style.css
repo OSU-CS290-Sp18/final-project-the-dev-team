@@ -77,8 +77,17 @@ body {
        position: relative;
 }
 
+.center {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
 .row{
   margin-bottom:20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .col-md-4{
@@ -112,9 +121,10 @@ body {
 
 .select-title{
   margin:60px;
-  margin-left:35%;
+  margin-left:30%;
   font-size:30px;
   font-weight:bold;
+  font-family: 'Russo One', sans-serif;
 }
 
 .content-container{
