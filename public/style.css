@@ -375,4 +375,6 @@ body {
     color: white; /* White text color */
 }
 
-.hero {background-color: #4CAF50;} /* Green */
+.hero {
+    background-color: #4285F4;
+}
