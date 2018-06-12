@@ -151,25 +151,38 @@ var testObj = {
 app.get('/utility/result/:username',function(req,res,next){
   var username = req.params.username.split('-')[0];
   var blizID = req.params.username.split('-')[1];
-  var player = db.collection('player.overwatch');
-  var playerCursor = player.find({username:username});
+  var player = db.collection('player.overwatch.new');
+  var playerCursor = player.find({'profile.nick':username});
   playerCursor.toArray(function(err,playerDocs){
     if(err){
       res.status(500).send("Error in database");
+    }
+    else if(playerDocs==[]){
+      console.log("IDK what happened");
     }
     else{
 
       console.log("== The user information is fetched from DB:");
       console.log(playerDocs);
       var playerElement = playerDocs[0];
-      res.status(200);
-      res.render('overwatchPage',{
-        profilePic:playerElement.portrait,
-        username:username,
-        blizID:blizID,
-        skillRating:playerElement.competitive.rank,
-        rankPic:playerElement.competitive.rank_img
-      });
+        res.status(200);
+        try{
+        var profilePic = playerElement.profile.avatar,
+            skillRating = playerElement.profile.rank,
+            rankPic = playerElement.profile.rankPicture
+        }
+        catch(e){
+          ;
+        }
+        res.render('overwatchPage',{
+          profilePic:profilePic,
+          username:username,
+          blizID:blizID,
+          skillRating:skillRating,
+          rankPic:rankPic
+        });
+
+
     }
   });
 
