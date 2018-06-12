@@ -60,43 +60,10 @@ const steamAPIKey = '36E4FE8D8ABDAB3E874F2111676BFFAF';
 
 var appID = 311210;
 
-/*
-overwatch.getProfile(platform,region,tag,function(json){
-  console.log(json);
-  json._id = 5;
-  var player = db.collection('player.overwatch');
-  player.insertOne(json);
-});
-*/
 
 var user = new steamAPI.User(steamAPIKey,76561198272110510);
 var userStats = new steamAPI.UserStats(steamAPIKey);
 
-/*
-user.GetPlayerBans().done(function(result){
-  console.log(result);
-});
-
-userStats.GetNumberOfCurrentPlayers(appID).done(function(result){
-  console.log(result);
-});
-
-userStats.GetSchemaForGame(appID).done(function(result){
-  console.log(result);
-});
-
-
-app.get('/123',function(req,res){
-  user.GetPlayerBans().done(function(result){
-    console.log(result);
-  });
-});
-*/
-
-/*user.GetFriendList().done(function(result){
-  console.log(result);
-});
-*/
 
 var options = {
   title:"bo3",
@@ -181,12 +148,6 @@ var testObj = {
   }
 };
 
-/*
-app.get('/utility/submit',function(req,res,next){
-  res.redirect('/');
-  console.log(234);
-});
-*/
 app.get('/utility/result/:username',function(req,res,next){
   var username = req.params.username.split('-')[0];
   var blizID = req.params.username.split('-')[1];
@@ -213,15 +174,6 @@ app.get('/utility/result/:username',function(req,res,next){
   });
 
 });
-
-/*
-app.post('/utility/submit',function(req,res,next){
-  //var username = req.body.username.replace('#','-');
-  var username = req.body.username;
-  console.log(username);
-  //addPlayerCOD(username);
-});
-*/
 
 app.post('/a', [function(req, res, next) {
   next();
@@ -258,38 +210,3 @@ MongoClient.connect(mongoURL,function(err,client){
       console.log("== Server is listening on port 3001.");
   });
 });
-
-function addPlayerOverwatch(name){
-  overwatch.getProfile(platform,region,name,function(json){
-    console.log(json);
-    json._id = overwatchId;
-    if(json.competitive.star==''){
-      json.competitive.star = 'none';
-    }
-    var player = db.collection('player.overwatch');
-    player.insertOne(json);
-    overwatchId++;
-  });
-}
-
-var codId = 40;
-
-function addPlayerCOD(name){
-  var options = {
-    title:"bo3",
-    platform:"psn",
-    username:name,
-    days:1,
-    type:"core",
-    time:"monthly",
-    mode:"career"
-  };
-  console.log(options);
-  codAPI.getProfile(options,function(profile){
-    console.log(profile);
-    profile._id = codId;
-    var player = db.collection('player.callofduty');
-    player.insertOne(profile);
-    codId++;
-  });
-}
