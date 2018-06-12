@@ -197,16 +197,27 @@ app.get('/Overwatch/result/:username',function(req,res,next){
             silverMedal = playerElement.competitive.global.medals_silver,
             bronzeMedal = playerElement.competitive.global.medals_bronze,
             winPercentage = Math.floor((winCount/playedCount)*100*100)/100 + "%",
-            sugObjArray = [];
+            sugObjArray = [],
+            heroArray = playerElement.competitive.heroes;
+
+            console.log(heroArray[0]);
+
+            blizID = playerElement.profile.url.split('-')[2];
+
             console.log(winPercentage);
             var sugCursor = player.find({$and:[{"profile.rank":{$gte:skillRating-200}},{"profile.rank":{$lte:skillRating+200}}]});
             sugCursor.toArray(function(err,sugDocs){
               //console.log(sugDocs);
               for(var i = 0;i < 5;i++){
                 var sugObj = sugDocs[i];
+                if(!(sugObj === undefined)){
                 sugObj['blizID'] = sugObj.profile.url.split("-")[2];
                 sugObjArray.push(sugObj);
+                }
               }
+            for(var i = 0;i<3;i++){
+              var heroObj;
+            }
               res.render('overwatchPage',{
                 profilePic:profilePic,
                 username:username,

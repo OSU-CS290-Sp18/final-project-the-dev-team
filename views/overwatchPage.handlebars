@@ -17,8 +17,12 @@
       <div class="mostPlayedBox">
           <p class="sectionTitle"> Most Played </p>
           <div class="bars">
-            
+            {{#each heroes}}
+              {{> overwatchHeroBar}}
+            {{/each}}
           </div>
       </div>
+
+
 </div>
 <link rel="stylesheet" href="../../../style.css" media="screen">
