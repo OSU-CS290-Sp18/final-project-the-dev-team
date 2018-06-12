@@ -163,24 +163,73 @@ app.get('/utility/result/:username',function(req,res,next){
     else{
 
       console.log("== The user information is fetched from DB:");
-      console.log(playerDocs);
+      //console.log(playerDocs);
       var playerElement = playerDocs[0];
         res.status(200);
         try{
         var profilePic = playerElement.profile.avatar,
             skillRating = playerElement.profile.rank,
-            rankPic = playerElement.profile.rankPicture
+            rankPic = playerElement.profile.rankPicture,
+            winCount = playerElement.competitive.global.games_won,
+            lossCount = playerElement.competitive.global.games_lost,
+            drawCount = playerElement.competitive.global.games_tied,
+            playedCount = playerElement.competitive.global.games_played,
+            timeCount = playerElement.competitive.global.time_played,
+            soloElimination = playerElement.competitive.global.eliminations,
+            totalDamage = playerElement.competitive.global.all_damage_done,
+            goldMedal = playerElement.competitive.global.medals_gold,
+            silverMedal = playerElement.competitive.global.medals_silver,
+            bronzeMedal = playerElement.competitive.global.medals_bronze,
+            sugObjArray = [];
+            var sugCursor = player.find({$and:[{"profile.rank":{$gte:skillRating-200}},{"profile.rank":{$lte:skillRating+200}}]});
+            sugCursor.toArray(function(err,sugDocs){
+              console.log(sugDocs);
+              for(var i = 0;i < 5;i++){
+                var sugObj = sugDocs[i];
+                sugObj['blizID'] = sugObj.profile.url.split("-")[2];
+                sugObjArray.push(sugObj);
+              }
+              res.render('overwatchPage',{
+                profilePic:profilePic,
+                username:username,
+                blizID:blizID,
+                skillRating:skillRating,
+                rankPic:rankPic,
+                winCount:winCount,
+                lossCount:lossCount,
+                drawCount:drawCount,
+                playedCount:playedCount,
+                timeCount:timeCount,
+                soloElimination:soloElimination,
+                totalDamage:totalDamage,
+                goldMedal:goldMedal,
+                silverMedal:silverMedal,
+                bronzeMedal:bronzeMedal,
+                suggested:sugObjArray
+              });
+            });
+            //console.log(sugCursor);
+
+/*
+              sugCursor.toArray(function(err,sugDocs){
+                  console.log(sugDocs);
+                  for(var i = 0;i < 5;i++){
+                  var sugObj = playerDocs[i];
+                  console.log(sugObj);
+                  sugObjArray.push(sugObj);
+                  }
+                }).then(function(){
+                  console.log(sugObjArray);
+                });
+*/
+
+
+
         }
         catch(e){
           ;
         }
-        res.render('overwatchPage',{
-          profilePic:profilePic,
-          username:username,
-          blizID:blizID,
-          skillRating:skillRating,
-          rankPic:rankPic
-        });
+
 
 
     }
