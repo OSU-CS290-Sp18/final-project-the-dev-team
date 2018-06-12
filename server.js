@@ -199,6 +199,7 @@ app.get('/Overwatch/result/:username',function(req,res,next){
             winPercentage = Math.floor((winCount/playedCount)*100*100)/100 + "%",
             sugObjArray = [],
             heroArray = playerElement.competitive.heroes;
+            console.log(heroArray.tracer);
             //for(var i = 0;i < )
 
             blizID = playerElement.profile.url.split('-')[2];
