@@ -24,9 +24,16 @@ body {
      font-size: 40px;
      font-family: 'Lucida Console','Russo One', sans-serif;
      margin: 0;
-     padding: 10px;
+     padding: 5px;
      background-color: #4285F4;
      color: rgba(277,250, 32, 1);
+}
+
+.titlePic {
+     justify-content: center;
+     margin: 0px;
+     padding: 0px;
+     background-color: #4285F4;
 }
 
 .navitem {
@@ -37,6 +44,7 @@ body {
      font-family: 'Russo One', sans-serif;
      font-size:30px;
      margin:0px;
+     margin-left: 5px;
 }
 
 .navitem:hover{
@@ -55,7 +63,7 @@ body {
 }
 
 .active {
-     //border-bottom: 3px solid rgba(53,148,210,1);
+     border-bottom: 3px solid #4285F4;
 }
 
 .card {
