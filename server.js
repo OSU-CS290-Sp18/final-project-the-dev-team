@@ -199,7 +199,8 @@ app.get('/Overwatch/result/:username',function(req,res,next){
             winPercentage = Math.floor((winCount/playedCount)*100*100)/100 + "%",
             sugObjArray = [],
             heroArray = playerElement.competitive.heroes,
-            heroArraySort = [];
+            heroArraySort = [],
+            heroFinal = [];
 
             for(var i in heroArray){
               var time_played = heroArray[i].time_played;
@@ -225,6 +226,21 @@ app.get('/Overwatch/result/:username',function(req,res,next){
             }
 
             console.log(heroArraySort);
+
+            var timeSum = 0;
+            for(var i = 0;i<heroArraySort.length;i++){
+              timeSum += heroArraySort[i].time_played;
+            }
+
+            for(var i = 0;i<3;i++){
+              var heroObj = {
+                hero_name:heroArraySort[i].hero_name,
+                playPercentage:Math.floor(((heroArraySort[i].time_played)/timeSum)*100*100)/100
+              }
+              heroFinal.push(heroObj);
+            }
+
+            console.log(heroFinal);
 
             //for(var i = 0;i < )
 
@@ -258,7 +274,8 @@ app.get('/Overwatch/result/:username',function(req,res,next){
                 silverMedal:silverMedal,
                 bronzeMedal:bronzeMedal,
                 winPercentage:winPercentage,
-                suggested:sugObjArray
+                suggested:sugObjArray,
+                heroes:heroFinal
               });
             });
             //console.log(sugCursor);
