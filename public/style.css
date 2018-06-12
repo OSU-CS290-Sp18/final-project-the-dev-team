@@ -395,4 +395,12 @@ body {
 
 .hero {
     background-color: #4285F4;
+    margin-bottom: 10px;
+}
+
+.heroName {
+     display: inline;
+     font-family: 'Lucida Console','Russo One', sans-serif;
+     font-weight: bold;
+     margin-left: 10px;
 }
