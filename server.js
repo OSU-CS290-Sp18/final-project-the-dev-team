@@ -199,8 +199,7 @@ app.get('/Overwatch/result/:username',function(req,res,next){
             winPercentage = Math.floor((winCount/playedCount)*100*100)/100 + "%",
             sugObjArray = [],
             heroArray = playerElement.competitive.heroes;
-
-            console.log(heroArray[0]);
+            //for(var i = 0;i < )
 
             blizID = playerElement.profile.url.split('-')[2];
 
@@ -226,7 +225,7 @@ app.get('/Overwatch/result/:username',function(req,res,next){
                 rankPic:rankPic,
                 winCount:winCount,
                 lossCount:lossCount,
-                drawCount:drawCount,
+                drawCount:drawCount||0,
                 playedCount:playedCount,
                 timeCount:timeCount,
                 soloElimination:soloElimination,
@@ -290,10 +289,13 @@ app.get('/player',function(req,res){
   });
 });
 
+
 app.get('*',function(req,res){
   res.status(404);
-  res.render('404Page');
+  res.redirect('/404.html');
 });
+
+
 
 
 MongoClient.connect(mongoURL,function(err,client){
