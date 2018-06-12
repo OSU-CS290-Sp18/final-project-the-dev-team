@@ -375,6 +375,4 @@ body {
     color: white; /* White text color */
 }
 
-.html {width: 90%; background-color: #4CAF50;} /* Green */
-.css {width: 80%; background-color: #2196F3;} /* Blue */
-.js {width: 65%; background-color: #f44336;} /* Red */
+.hero {background-color: #4CAF50;} /* Green */
