@@ -198,8 +198,34 @@ app.get('/Overwatch/result/:username',function(req,res,next){
             bronzeMedal = playerElement.competitive.global.medals_bronze,
             winPercentage = Math.floor((winCount/playedCount)*100*100)/100 + "%",
             sugObjArray = [],
-            heroArray = playerElement.competitive.heroes;
-            console.log(heroArray.tracer);
+            heroArray = playerElement.competitive.heroes,
+            heroArraySort = [];
+
+            for(var i in heroArray){
+              var time_played = heroArray[i].time_played;
+              var hero_name = i;
+              if(!isNaN(time_played)){
+                var heroObj = {
+                  time_played:time_played,
+                  hero_name:hero_name
+                };
+                heroArraySort.push(heroObj);
+              }
+            }
+
+
+            for(var i = 0;i < heroArraySort.length;i++){
+              for(var j = 0;j < heroArraySort.length - i - 1;j++){
+                if(heroArraySort[j].time_played < heroArraySort[j+1].time_played){
+                  var temp = heroArraySort[j];
+                  heroArraySort[j] = heroArraySort[j+1];
+                  heroArraySort[j+1] = temp;
+                }
+              }
+            }
+
+            console.log(heroArraySort);
+
             //for(var i = 0;i < )
 
             blizID = playerElement.profile.url.split('-')[2];
@@ -215,9 +241,6 @@ app.get('/Overwatch/result/:username',function(req,res,next){
                 sugObjArray.push(sugObj);
                 }
               }
-            for(var i = 0;i<3;i++){
-              var heroObj;
-            }
               res.render('overwatchPage',{
                 profilePic:profilePic,
                 username:username,

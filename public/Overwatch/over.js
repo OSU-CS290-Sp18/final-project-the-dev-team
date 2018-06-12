@@ -5,6 +5,7 @@ function uploadForm(){
 
        var request = new XMLHttpRequest();
        var requestURL = window.location.pathname + 'submit';
+       requestURL = requestURL.replace('index.html','');
        console.log(requestURL);
 
        request.open('POST',requestURL);
