@@ -148,7 +148,19 @@ var testObj = {
   }
 };
 
-app.get('/utility/result/:username',function(req,res,next){
+app.post('/Overwatch/submit',function(req,res,next){
+  console.log(req.params.username);
+  var username = req.params.username.replace('#','-');
+  var player = db.collection('player.overwatch.new');
+    owjs
+        .getAll('pc','us',username)
+        .then(function(data){
+          console.log(data);
+          player.insertOne(data);
+        });
+});
+
+app.get('/Overwatch/result/:username',function(req,res,next){
   var username = req.params.username.split('-')[0];
   var blizID = req.params.username.split('-')[1];
   var player = db.collection('player.overwatch.new');
@@ -165,6 +177,9 @@ app.get('/utility/result/:username',function(req,res,next){
       console.log("== The user information is fetched from DB:");
       //console.log(playerDocs);
       var playerElement = playerDocs[0];
+      if(playerElement === undefined){
+        next();
+      }
         res.status(200);
         try{
         var profilePic = playerElement.profile.avatar,
@@ -263,7 +278,10 @@ app.get('/player',function(req,res){
   });
 });
 
-
+app.get('*',function(req,res){
+  res.status(404);
+  res.render('404Page');
+});
 
 
 MongoClient.connect(mongoURL,function(err,client){

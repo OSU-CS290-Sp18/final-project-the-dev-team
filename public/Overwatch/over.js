@@ -1,26 +1,26 @@
 
 
 function uploadForm(){
-       var tag = submitForm['name'].value;
-       var platform;
-       if(submitForm['platform-psn'].checked){
-         platform = submitForm['platform-psn'].value;
-       }
-       else if(submitForm['platform-xbl'].checked){
-         platform = submitForm['platform-xbl'].value;
-       }
-       else{
-         platform = submitForm['platform-steam'].value;
-       }
+       var username = submitForm['name'].value;
+
+       var request = new XMLHttpRequest();
+       var requestURL = window.location.pathname + 'submit';
+       console.log(requestURL);
+
+       request.open('POST',requestURL);
        var userObj = {
-              platform: platform,
-              tag:      tag
-       }
+         username:username
+       };
+       console.log(userObj);
        var requestBody = JSON.stringify(userObj);
-       request.setRequestHeader('Content-Type','application/json');
+       request.setRequestHeader(
+         'Content-Type','application/json'
+       );
+
        request.send(requestBody);
 
-
+       var url = window.location.href;
+       window.location.href = url + "result/" + username;
 }
 
 
@@ -30,6 +30,3 @@ function uploadForm(){
 var submitButton = document.getElementById('submit-button');
 var submitForm = document.forms[0];
 submitButton.addEventListener('click',uploadForm);
-
-//var testButton = document.getElementById('test-button');
-//testButton.addEventListener('click',postTest);
