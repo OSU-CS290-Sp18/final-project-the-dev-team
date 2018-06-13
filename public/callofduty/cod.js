@@ -20,6 +20,7 @@ function uploadForm(){
        console.log(requestBody);
 
        var url = window.location.href;
+       url = url.replace('bo3.html','');
        window.location.href = url + "result/" + username;
 }
 

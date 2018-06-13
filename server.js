@@ -177,9 +177,68 @@ app.post('/callofduty/submit',function(req,res,next){
   console.log(options);
   codAPI.getProfile(options,function(profile){
     console.log(profile);
-    player.insertOne(profile);
+    try{
+    //player.insertOne(profile);
+    }
+    catch(e){
+      ;
+    }
   });
 
+});
+
+app.get('/callofduty/result/:username',function(req,res,next){
+  var username = req.params.username;
+  console.log("Get request for "+username);
+  var player = db.collection('player.callofduty');
+  var playerCursor = player.find({'username':username});
+  playerCursor.toArray(function(err,playerDocs){
+    if(err){
+      res.status(500).send("Error in database");
+    }
+    else{
+      var playerElement = playerDocs[0];
+      if(playerElement === undefined){
+        next();
+      }
+      res.status(200);
+      var winCount = playerElement.mp.lifetime.all.wins,
+          lossCount = playerElement.mp.lifetime.all.losses,
+          winPercentage = Math.floor((winCount/(winCount+lossCount)*100*100)/100) + "%",
+          playedCount = winCount + lossCount,
+          timePlayed = Math.floor((playerElement.mp.lifetime.all.timePlayed)/3600),
+          kdRatio = playerElement.mp.lifetime.all.kdRatio,
+          sugObjArray = [];
+
+      var sugCursor = player.find({$and:[{"mp.lifetime.all.kdRatio":{$gte:kdRatio-0.2}},{"mp.lifetime.all.kdRatio":{$lte:kdRatio+0.2}}]});
+      sugCursor.toArray(function(err,sugDocs){
+        //console.log(sugDocs);
+        for(var i = 0;i < 5;i++){
+          var sugObj = sugDocs[i];
+          if(!(sugObj === undefined)){
+          sugObjArray.push(sugObj);
+          }
+        }
+        res.render('codPage',{
+          username:username,
+          prestige:playerElement.mp.prestige,
+          level:playerElement.mp.level,
+          winCount:winCount,
+          lossCount:lossCount,
+          winPercentage:winPercentage,
+          playedCount:playedCount,
+          timeCount:timePlayed + " hrs",
+          killCount:playerElement.mp.lifetime.all.kills,
+          deathCount:playerElement.mp.lifetime.all.deaths,
+          kdRatio:kdRatio,
+          headCount:playerElement.mp.lifetime.all.headshots,
+          suggested:sugObjArray
+        });
+      });
+
+
+    }
+  });
 });
 
 app.get('/Overwatch/result/:username',function(req,res,next){
@@ -352,12 +411,12 @@ app.get('/player',function(req,res){
   });
 });
 
-
+/*
 app.get('*',function(req,res){
   res.status(404);
   res.redirect('/404.html');
 });
-
+*/
 
 
 
