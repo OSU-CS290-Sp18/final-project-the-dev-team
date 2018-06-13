@@ -17,6 +17,7 @@ function uploadForm(){
        );
 
        request.send(requestBody);
+       console.log(requestBody);
 
        var url = window.location.href;
        window.location.href = url + "result/" + username;
