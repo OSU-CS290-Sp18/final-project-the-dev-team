@@ -160,6 +160,25 @@ app.post('/Overwatch/submit',function(req,res,next){
         });
 });
 
+app.post('/callofduty/submit',function(req,res,next){
+  var username = req.params.username;
+  var player = db.collection('player.callofduty');
+  var options = {
+    title:"bo3",
+    platform:"psn",
+    username:username,
+    days:1,
+    type:"core",
+    time:"monthly",
+    mode:"career"
+  };
+  codAPI.getProfile(options,function(profile){
+    console.log(profile);
+    player.insertOne(profile);
+  });
+
+});
+
 app.get('/Overwatch/result/:username',function(req,res,next){
   var username = req.params.username.split('-')[0];
   var blizID = req.params.username.split('-')[1];
