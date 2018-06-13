@@ -2,6 +2,7 @@ const overwatch = require('overwatch-api');
 const steamAPI = require('steam-api');
 const codAPI = require('cod-api');
 const bodyParser = require('body-parser');
+const owjs = require('overwatch-js');
 
 var path = require('path');
 var fs = require('fs');
@@ -149,8 +150,8 @@ var testObj = {
 };
 
 app.post('/Overwatch/submit',function(req,res,next){
-  console.log(req.params.username);
-  var username = req.params.username.replace('#','-');
+  console.log(req.body.username);
+  var username = req.body.username.replace('#','-');
   var player = db.collection('player.overwatch.new');
     owjs
         .getAll('pc','us',username)
@@ -158,6 +159,27 @@ app.post('/Overwatch/submit',function(req,res,next){
           console.log(data);
           player.insertOne(data);
         });
+});
+
+app.post('/callofduty/submit',function(req,res,next){
+  console.log(req.body.username);
+  var username = req.body.username;
+  var player = db.collection('player.callofduty');
+  var options = {
+    title:"bo3",
+    platform:"psn",
+    username:username,
+    days:1,
+    type:"core",
+    time:"monthly",
+    mode:"career"
+  };
+  console.log(options);
+  codAPI.getProfile(options,function(profile){
+    console.log(profile);
+    player.insertOne(profile);
+  });
+
 });
 
 app.get('/Overwatch/result/:username',function(req,res,next){

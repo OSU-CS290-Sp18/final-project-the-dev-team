@@ -1,11 +1,9 @@
-
-
 function uploadForm(){
        var username = submitForm['name'].value;
 
        var request = new XMLHttpRequest();
        var requestURL = window.location.pathname + 'submit';
-       requestURL = requestURL.replace('index.html','');
+       requestURL = requestURL.replace('bo3.html','');
        console.log(requestURL);
 
        request.open('POST',requestURL);
@@ -19,8 +17,8 @@ function uploadForm(){
        );
 
        request.send(requestBody);
+       console.log(requestBody);
 
-       alert("Please wait for the server processing request for 5 seconds.....");
        var url = window.location.href;
        window.location.href = url + "result/" + username;
 }
