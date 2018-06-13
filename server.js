@@ -156,8 +156,43 @@ app.post('/Overwatch/submit',function(req,res,next){
     owjs
         .getAll('pc','us',username)
         .then(function(data){
-          console.log(data);
-          player.insertOne(data);
+          //console.log(data);
+          console.log("== Got data from API");
+          player.findOne({'profile.nick': data.profile.nick}, function(err, result){
+               if(err)
+               {
+                    console.log("== ERROR from findOne: ");
+                    console.log(err);
+               }
+               if(!result)
+               {
+                    console.log("== User not in DB. Adding...");
+                    player.insertOne(data);
+                    console.log("Done!");
+               }
+               else
+               {
+                    console.log("== User is in DB. Updating...");
+
+                    player.deleteOne({'profile.nick':data.profile.nick });
+                    player.insertOne(data);
+
+                    //console.log(data.competitive.heroes);
+                    //var competitiveObj = data.competitive;
+                    /*player.updateOne(
+                         {'profile.nick':data.profile.nick},
+                         {$set: {
+                              'profile' : data.profile,
+                              'competitive' : competitiveObj,//doesnt like d.va
+                              'quickplay' : data.quickplay,
+                              'achievements' : data.achievements
+                         }});*/
+                    console.log("Done!");
+
+               }
+          })
+
+
         });
 });
 
@@ -305,7 +340,7 @@ app.get('/Overwatch/result/:username',function(req,res,next){
                 }
               }
             }
-
+            console.log("== All heros in order of play time:");
             console.log(heroArraySort);
 
             var timeSum = 0;
@@ -320,7 +355,7 @@ app.get('/Overwatch/result/:username',function(req,res,next){
               }
               heroFinal.push(heroObj);
             }
-
+            console.log("== Top three heros:");
             console.log(heroFinal);
 
             //for(var i = 0;i < )
