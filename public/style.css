@@ -331,6 +331,11 @@ body {
        padding-top: 10px;
        display: inline;
 }
+.miniUsername:hover {
+
+     color: #4285F4;
+      //font-weight: bold;
+}
 .miniBlizID {
        display: inline;
        font-size: 15px;
