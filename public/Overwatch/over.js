@@ -20,7 +20,7 @@ function uploadForm(){
 
        request.send(requestBody);
 
-       //alert("Please wait for the server processing request for 5 seconds.....");
+       alert("Please wait for the server processing request for 5 seconds.....");
        var url = window.location.href;
        window.location.href = url + "result/" + username;
 }
