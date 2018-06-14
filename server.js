@@ -361,7 +361,7 @@ app.get('/Overwatch/result/:username',function(req,res,next){
             //for(var i = 0;i < )
 
             blizID = playerElement.profile.url.split('-')[2];
-
+            console.log("== Win Percentage:")
             console.log(winPercentage);
             var sugCursor = player.find({$and:[{"profile.rank":{$gte:skillRating-200}},{"profile.rank":{$lte:skillRating+200}}]});
             sugCursor.toArray(function(err,sugDocs){
