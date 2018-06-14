@@ -446,12 +446,12 @@ app.get('/player',function(req,res){
   });
 });
 
-/*
+
 app.get('*',function(req,res){
   res.status(404);
   res.redirect('/404.html');
 });
-*/
+
 
 
 
